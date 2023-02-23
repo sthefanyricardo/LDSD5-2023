@@ -1,0 +1,254 @@
+1) Configurar o usuário e senha do GIT em sua máquina:
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ git config --global user.name "Sthefany Albuquerque"
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ git config --global user.email "s.albuquerque@aluno.ifsp.edu.br"
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+core.editor=nano.exe
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+core.editor="C:\Users\Thoma\AppData\Local\Programs\Microsoft VS Code\bin\code" --wait
+user.name=Sthefany Albuquerque
+user.email=s.albuquerque@aluno.ifsp.edu.br
+
+2) Adicionar uma chave SSH ao seu perfil e sincronizá-la com sua máquina:
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ ssh-keygen -t ed25519 -C "s.albuquerque@aluno.ifsp.edu.br"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/c/Users/Thoma/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/Thoma/.ssh/id_ed25519
+Your public key has been saved in /c/Users/Thoma/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:XToU8IOI+5fk9aEPPFt85L7htp/b2qwkAAxx5JPGzss s.albuquerque@aluno.ifsp.edu.br
+The key's randomart image is:
++--[ED25519 256]--+
+|      oo+..      |
+|     . B + .     |
+|    . . X + .    |
+|     . + = +     |
+|    .   S * . .  |
+|     . + = * +   |
+|      . E = = =  |
+|       .   * *.+o|
+|          . ..BO*|
++----[SHA256]-----+
+
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ eval "$(ssh-agent -s)"
+Agent pid 285
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ ssh-add ~/.ssh/id_ed25519
+Identity added: /c/Users/Thoma/.ssh/id_ed25519 (s.albuquerque@aluno.ifsp.edu.br)
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ ls -al ~/.ssh
+total 31
+drwxr-xr-x 1 Thoma 197609   0 Feb 23 01:38 ./
+drwxr-xr-x 1 Thoma 197609   0 Feb 23 01:24 ../
+-rw-r--r-- 1 Thoma 197609 432 Feb 23 01:34 id_ed25519
+-rw-r--r-- 1 Thoma 197609 113 Feb 23 01:34 id_ed25519.pub
+-rw-r--r-- 1 Thoma 197609 395 Apr  4  2022 known_hosts
+
+Thoma@DESKTOP-MHT5NBE MINGW64 ~
+$ clip < ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzsKx16ejfV5NJvj3y2x9/+lZTWUX4i4Kq76gZ8fb9N s.albuquerque@aluno.ifsp.edu.br
+
+3) Criar um repositório GIT:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/Entendimento-GIT
+$ git init
+Initialized empty Git repository in C:/LDS/Entendimento-GIT/.git/
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/Entendimento-GIT (master)
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+4) Clonar um repositório GIT:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS
+$ git clone git@github.com:sthefanyricardo/LDSD5-2023.git
+Cloning into 'LDSD5-2023'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+Receiving objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+5) Adicionar arquivos ao repositório:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        "exerc\303\255cios/"
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git add *
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'exercícios/ex001.py', LF will be replaced by CRLF the next time Git touches it
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+        new file:   "exerc\303\255cios/ex001.py"
+
+6) Fazer um commit em um repositório GIT:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git commit -m "adicionado arquivos ao repositorio"
+[main 9895ee4] adicionado arquivos ao repositorio
+ 2 files changed, 4 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 "exerc\303\255cios/ex001.py"
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+7) Fazer um "push":
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git push
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (5/5), 438 bytes | 438.00 KiB/s, done.
+Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:sthefanyricardo/LDSD5-2023.git
+   057b928..9895ee4  main -> main
+
+8) Criar uma branch:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git branch lds-tarefa2
+
+9) "Trocar" (switch) entre diferentes branches:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git checkout branch-teste
+Switched to branch 'branch-teste'
+
+10) Fazer um merge entre branches e 11) Fazer um merge entre uma branch qualquer e a branch master:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (branch-teste)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git merge branch-teste
+Updating 068673d..7665cdc
+Fast-forward
+ Teste.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Teste.txt
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 303 bytes | 303.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:sthefanyricardo/LDSD5-2023.git
+   068673d..7665cdc  main -> main
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$
+
+12) Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (lds-tarefa2)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git pull
+Already up to date.
+
+13) "Voltar" (rollback) uma versão de um repositório:
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git log
+commit 7665cdc3e904e4dc0e9d147f449ccbede14b1824 (HEAD -> main, origin/main, origin/HEAD, branch-teste)
+Author: Sthefany Albuquerque <s.albuquerque@aluno.ifsp.edu.br>
+Date:   Thu Feb 23 17:11:42 2023 -0300
+
+    Adicionando arquivo de teste
+
+commit 068673d0a83372dd3a6dfb4b53eae76003d473cb
+Author: Sthefany Albuquerque <s.albuquerque@aluno.ifsp.edu.br>
+Date:   Thu Feb 23 14:25:58 2023 -0300
+
+    Initial commit
+
+Thoma@DESKTOP-MHT5NBE MINGW64 /c/LDS/LDSD5-2023 (main)
+$ git revert 7665cdc3e904e4dc0e9d147f449ccbede14b1824
+hint: Waiting for your editor to close the file...
+[main 43fea4e] Revert "Adicionando arquivo de teste"
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 Teste.txt
+
+Revert "Adicionando arquivo de teste"
+This reverts commit 7665cdc3e904e4dc0e9d147f449ccbede14b1824.
+
+
+15) Além disso, como poderíamos trabalhar sem ter infinitos conflitos de versões? Disserte sobre e defina um fluxo de trabalho a ser adotado quando tivermos mais de um usuário fazendo commits em um mesmo repositório. 
+
+Ter organização em um repositório remoto é o melhor caminho a seguir em qualquer ocasião, quando estamos trabalhando em equipe ou não. E quando trabalhamos com um controle de versão, utilizar todos os seus recursos disponíveis para ajudar ao máximo o desenvolvimento contínuo e simultâneo do trabalho em equipe é o caminho mais feliz. 
+
+Ao se trabalhar com o git podemos utilizar várias ramificações da branch main/master, pois é uma ótima escolha para garantir que as alterações numa parte da aplicação não interfiram no que já existe. Quando criamos as ramificações (branch) individuais podemos garantir que cada membro da equipe trabalhará em uma ramificação (branch) única e ao final do trabalho poderá fazer o pull request e merge na branch main/master, assim unificando todas as versões recentes com as que já existiam na branch principal, sem conflitos de commit e/ou substituição do que já existia.
+
+Seguindo esse raciocínio, um fluxo de trabalho a ser adotado é a separação do que está sendo feito através das ramificações da branch principal (main/master). Por exemplo: se estamos trabalhando em uma melhoria, iremos criar uma branch para se trabalhar somente com melhorias, ou se vamos trabalhar em um defeito, vamos criar uma branch para atuar somente naquele com defeitos, ou se vamos implementar uma funcionalidade nova, então criamos um branch para trabalhar somente com novas implementações. Deixando tudo de forma independente temos um controle maior sobre o que estamos fazendo e até que ponto chegamos/avançamos, e também deixamos tudo mais organizado para se necessário voltar de onde começamos e/ou identificar futuros erros se houverem quando o código estiver todo atualizado e integrado na branch principal, e tudo isso sem comprometer o que já existe e funciona. Seguindo o alinhamento com uma metodologia ágil ainda podemos utilizar uma nomenclatura única para cada tipo de branch especificando somente a qual script as branch pertencem por exemplo: uma branch de criação: FEATURE-SPT00, HOTFIX-SPT00 BUGFIX-SPT00,RELEASE-SPT00 ou HML-SPT00 (branch de pré-homologação, vem antes do merge com a branch principal main/master), nessa branch normalmente são feitos os testes de unidade, teste de integração e teste de sistema e posteriormente o pull request e merge se necessário com a branch principal main/master.
